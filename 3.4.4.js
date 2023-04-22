@@ -7,7 +7,7 @@ function SmartHome(name, guarantee, power, color, wifi) {
     this.color = color,
     this.wifi = wifi
 }
-SmartHome.prototype.guarantee = function () {
+SmartHome.prototype.warranty = function () {
     if (this.guarantee === 'standart') {
         console.log(`${this.guarantee} warranty 12 month`)
     } else if (this.guarantee === 'extended') {
@@ -30,6 +30,7 @@ SmartHome.prototype.description = function () {
 
 }
 
-let webcam = new SmartHome('webcam', 'standart', 220, 'white', 'off');
+let webcam = new SmartHome('webcam', 'standart', 220, 'white', 'off') 
 webcam.description();
+webcam.warranty();
 webcam.wifi_on();
