@@ -1,6 +1,7 @@
 // создаем функцию- конструктор объектов
 function SmartHome(name, power, color, wifi) {
     this.name = name,
+    this.country = "--",
     this.series = 'Comfort',
     this.ip = 'IP 44'
     this.guarantee = 12,
@@ -27,7 +28,7 @@ SmartHome.prototype.wifi_on = function () {
 }  
 
 SmartHome.prototype.description = function () {
-    console.log(`Product name: ${this.name}, series: ${this.series}, IP: ${this.ip}, color: ${this.color}`);
+    console.log(`Product name: ${this.name}, country of origin ${this.country},series: ${this.series}, IP: ${this.ip}, color: ${this.color}`);
     this.warranty();
     if (this.power === 220) {
         console.log(`The ${this.name} is powered by 220v`);
@@ -49,9 +50,61 @@ SmartHome.prototype.power_connectedOff = function () {
 
 
 // Создаем объект с помощью функции-конструктора
-let webcam = new SmartHome('webcam', 220, 'white', 'off');
+let webcam = new SmartHome('webcam', 12, 'white', 'off');
 webcam.description();
 webcam.power_connectedOn();
-console.log(webcam.color);
 
+// проверка св-ва
+console.log(webcam.series);
+
+// добавление собственного св-ва
+webcam.timebattery = 12;
+
+// функция для проверки  наличия собственных св-в объекта:
+function checkProperty(obj) {
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key));
+        console.log(key);
+    }
+}
+
+
+// Создаем Группу Лампы
+function Lamp(name, power, powerConsum, lightColor, wifi) {
+    this.name = name,
+    this.power = power,
+    this.powerConsumption = powerConsum,
+    this.lightColor = lightColor,    
+    this.color = 'standart',
+    this.wifi = wifi,
+    this.power_connected = true
+}
+
+Lamp.prototype = new SmartHome();
+
+const osramLamp = new Lamp("Osram", 12, "5W", "Cool White", 'on')
+// добавлено свое св-во:
+osramLamp.guarantee = 24;
+
+osramLamp.description();
+
+// создаем группу Розетки
+function Socket(name, color, wifi) {
+    this.name = name,
+    this.power = 220,   
+    this.color = color,
+    this.num_socket = 1,
+    this.wifi = wifi,
+    this.power_connected = true
+}
+Socket.prototype = new SmartHome();
+
+const legrandSocket = new Socket('Legrand', 'black', 'on');
+const abbSocket = new Socket('ABB', 'yellow', 'on');
+abbSocket.country = 'Germany';
+abbSocket.num_socket = 2;
+legrandSocket.description();
+abbSocket.description();
+checkProperty(legrandSocket);
+checkProperty(abbSocket);
 
