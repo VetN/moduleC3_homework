@@ -37,12 +37,12 @@ SmartHome.prototype.description = function () {
     }
     this.wifi_on();
 }
-
+// методы определения включенного прибора
 SmartHome.prototype.power_connectedOn = function () {
     this.power_connected = true;
     console.log(`The ${this.name} is power connected`)
 }
-
+// методы определения выключенного прибора
 SmartHome.prototype.power_connectedOff = function () {
     this.power_connected = false;
     console.log(`The ${this.name} is not power connected`)
@@ -99,11 +99,18 @@ function Socket(name, color, wifi) {
 }
 Socket.prototype = new SmartHome();
 
+// создание объектов
 const legrandSocket = new Socket('Legrand', 'black', 'on');
 const abbSocket = new Socket('ABB', 'yellow', 'on');
+
+// добавление объектам дополнительных св-в
 abbSocket.country = 'Germany';
 abbSocket.num_socket = 2;
+
+// вызов функции
 legrandSocket.description();
 abbSocket.description();
+
+// функция проверки св-в объета
 checkProperty(legrandSocket);
 checkProperty(abbSocket);
