@@ -1,4 +1,3 @@
-// создаем функцию- конструктор объектов
 function SmartHome(name, power, color, wifi) {
     this.name = name,
     this.country = "--",
