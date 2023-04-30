@@ -114,3 +114,4 @@ abbSocket.description();
 // функция проверки св-в объета
 checkProperty(legrandSocket);
 checkProperty(abbSocket);
+
